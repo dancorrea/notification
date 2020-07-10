@@ -1,0 +1,26 @@
+{
+    "name": "dancorrea/notification",
+    "description": "This is a library that uses composer as the basis for generating email notifications.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Corrêa",
+            "email": "danccorrrea@gmail.com",
+            "homepage": "https://www.dscorrea.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpmailer/phpmailer": "6.0.1"
+    },
+    "config": {
+        "vendor-dir": "lib_ext"
+    },
+    "autoload": {
+        "psr-4": {
+            "Notification\\": "_app"
+        }
+    }
+}

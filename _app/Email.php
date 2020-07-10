@@ -9,21 +9,21 @@ class Email
 {
     private $mail = \stdClass::class;
 
-    public function __construct()
+    public function __construct($smtpDebug, $host, $user, $pass, $smtpSecure, $port, $setFromEmail, $setFromName)
     {
         $this->mail = new PHPMailer(true);
-        $this->mail->SMTPDebug = 2;                      // Enable verbose debug output
+        $this->mail->SMTPDebug = $smtpDebug;                      // Enable verbose debug output
         $this->mail->isSMTP();                                            // Send using SMTP
-        $this->mail->Host = 'mail.server.me';                    // Set the SMTP server to send through
+        $this->mail->Host = $host;                    // Set the SMTP server to send through
         $this->mail->SMTPAuth = true;                                   // Enable SMTP authentication
-        $this->mail->Username = 'sender@server.me';                     // SMTP username
-        $this->mail->Password = 'root@123';                               // SMTP password
-        $this->mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-        $this->mail->Port = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $this->mail->Username = $user;                     // SMTP username
+        $this->mail->Password = $pass;                               // SMTP password
+        $this->mail->SMTPSecure = $smtpSecure;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $this->mail->Port = $port;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         $this->mail->CharSet = 'utf-8';
         $this->mail->setLanguage('br');
         $this->mail->isHTML(true);
-        $this->mail->setFrom('sender@server.me', 'Mail Team', true);
+        $this->mail->setFrom($setFromEmail, $setFromName);
     }
 
     public function sendMail($subject, $body, $replyEmail, $replyName, $addressEmail, $addressName)
